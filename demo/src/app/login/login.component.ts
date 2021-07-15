@@ -12,8 +12,6 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
-  submitted = false;
   returnUrl: string;
 
 
@@ -37,23 +35,19 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
-    this.submitted = true;
+   
     if (this.loginForm.invalid) {
       return;
     }
 
-    this.loading = true;
     this.authenticationService
       .login(this.f.userName.value, this.f.password.value)
-      .pipe(first())
       .subscribe(
         (data) => {
-          // console.log(data);
           this.router.navigate([this.returnUrl]);
         },
         (error) => {
           console.log(error);
-          this.loading = false;
         }
       );
   }
