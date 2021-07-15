@@ -57,8 +57,10 @@ if(this.isCheckLogin){
         (data) => {
           this.router.navigate([this.returnUrl]);
         },);
+}else{
+    alert('Username or password is incorrect')
 }
-alert('Username or password is incorrect')
+
     // this.authenticationService
     //   .login(this.f.userName.value, this.f.password.value)
     //   .subscribe(

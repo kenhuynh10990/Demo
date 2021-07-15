@@ -11,7 +11,8 @@ import { UserService } from './user.service';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  userAccess;
+userLogin:User;
+userId:number;
 
   constructor(private http: HttpClient,
     private userService:UserService) {
@@ -26,14 +27,16 @@ export class AuthenticationService {
   }
 
   login(userName, password) {
-this.userService.getAllUser().subscribe(data=>{
-    this.userAccess = data;
+ this.userService.getAllUser().subscribe(data=>{
+    this.userLogin=data;
+})
+this.userLogin.filter(item =>{
+    if(item.userName==userName && item.password==password){
+        this.userId=item.userId;
+    }
 })
     return this.http
-      .post<any>('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user/', {
-        userName,
-        password,
-      })
+      .get<any>('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user/'+ this.userId)
       .pipe(
         map((user) => {
           localStorage.setItem('currentUser', JSON.stringify(user));
