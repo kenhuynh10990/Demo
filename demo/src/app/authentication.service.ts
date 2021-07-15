@@ -11,6 +11,7 @@ import { UserService } from './user.service';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  userAccess;
 
   constructor(private http: HttpClient,
     private userService:UserService) {
@@ -25,7 +26,9 @@ export class AuthenticationService {
   }
 
   login(userName, password) {
-
+this.userService.getAllUser().subscribe(data=>{
+    this.userAccess = data;
+})
     return this.http
       .post<any>('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user/', {
         userName,

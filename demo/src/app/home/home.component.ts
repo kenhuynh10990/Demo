@@ -18,7 +18,7 @@ currentUser:User;
   ngOnInit(): void {
   }
 get isLogged(){
-    return this.currentUser
+    return this.currentUser;
 }
 logout(){
     this.authenticationService.logout();

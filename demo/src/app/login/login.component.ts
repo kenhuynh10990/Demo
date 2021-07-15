@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { AuthenticationService } from '../authentication.service';
 import { UserService } from '../user.service';
 
@@ -13,6 +13,8 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
+  userLogin;
+  isCheckLogin=false;
 
 
   constructor(
@@ -35,20 +37,37 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
   onSubmit() {
+
+    this.userService.getAllUser().subscribe(data=>{
+        this.userLogin = data;
+    })
+    this.userLogin.filter(item =>{
+        if(item.userName==this.f.userName.value && item.password==this.f.password.value){
+            this.isCheckLogin=true;
+        }
+    })
    
     if (this.loginForm.invalid) {
       return;
     }
-
+if(this.isCheckLogin){
     this.authenticationService
       .login(this.f.userName.value, this.f.password.value)
       .subscribe(
         (data) => {
           this.router.navigate([this.returnUrl]);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        },);
+}
+alert('Username or password is incorrect')
+    // this.authenticationService
+    //   .login(this.f.userName.value, this.f.password.value)
+    //   .subscribe(
+    //     (data) => {
+    //       this.router.navigate([this.returnUrl]);
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     }
+    //   );
   }
 }
