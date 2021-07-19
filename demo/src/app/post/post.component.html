@@ -1,0 +1,20 @@
+<form [formGroup] ="postForm" (ngSubmit)="onSubmit()">
+    <mat-card class="feed-card feed-insert-card" fxLayout="column">
+        <mat-form-field>
+          <textarea cdkTextareaAutosize cdkAutosizeMaxRows="5" cdkAutosizeMinRows="5" matInput placeholder="What are you thinking?"
+            formControlName="content"></textarea>
+          
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Image link" formControlName="image">
+          
+        </mat-form-field>
+        <div fxLayoutAlign="end">
+          <button mat-button color="primary" [disabled]="isSubmiting" type="submit">
+            <!-- {{!isSubmiting ? 'Rock it!' : 'Sending...'}} -->
+            Post
+          </button>
+        </div>
+      </mat-card>
+
+</form>

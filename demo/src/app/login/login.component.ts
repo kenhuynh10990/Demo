@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { AuthenticationService } from '../authentication.service';
+import { User } from '../model/user.model';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
-  userLogin;
+  userLogin:User;
   isCheckLogin=false;
 
 

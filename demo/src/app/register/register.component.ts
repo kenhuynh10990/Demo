@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     this.userService.getAllUser().subscribe(data=>{
         this.userAlready=data;
     });
-    this.userAlready.filter(item =>{
+    this.userAlready.filter((item: { userName: string; }) =>{
       if(item.userName==this.registerForm.value['userName']){
           this.checkUserExist=true;
       }

@@ -8,21 +8,23 @@ import { User } from '../model/user.model';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
 currentUser:User;
-  constructor(private authenticationService:AuthenticationService,
+
+    constructor(private authenticationService:AuthenticationService,
     private router: Router) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser=x)
-     }
+    }
 
-  ngOnInit(): void {
-  }
-get isLogged(){
-    return this.currentUser;
-}
-logout(){
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    ngOnInit(): void {
+    }
+    get isLogged(){
+        return this.currentUser;
+    }
+    logout(){
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
 
-}
+    }
 }
