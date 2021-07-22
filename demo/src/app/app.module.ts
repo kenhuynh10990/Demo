@@ -15,6 +15,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
+import { PostDetailComponent } from './post-list/post-detail/post-detail.component';
+import { PostListComponent } from './post-list/post-list.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { PostComponent } from './post/post.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    PostComponent
+    PostComponent,
+    PostDetailComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,

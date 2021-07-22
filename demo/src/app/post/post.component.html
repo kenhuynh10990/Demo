@@ -5,16 +5,15 @@
             formControlName="content"></textarea>
           
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Image link" formControlName="image">
-          
-        </mat-form-field>
-        <div fxLayoutAlign="end">
+        
+         
+          <input type="file" (change)="importImages($event)" formControlName="image">
+       
+          <img [src]="imageSrc" *ngIf="imageSrc" style="height: 200px; width:300px">
+            <br>
           <button mat-button color="primary" [disabled]="isSubmiting" type="submit">
-            <!-- {{!isSubmiting ? 'Rock it!' : 'Sending...'}} -->
             Post
           </button>
-        </div>
       </mat-card>
 
 </form>

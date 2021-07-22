@@ -37,7 +37,6 @@ export class RegisterComponent implements OnInit {
       }
     }) 
     return this.checkUserExist;
-
   }
 
   onSubmit(){
@@ -45,8 +44,6 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.invalid){
         return;
     }
-
-   
     if( !this.checkUser()){
   
     this.userService.register(this.registerForm.value).pipe(first()).subscribe(

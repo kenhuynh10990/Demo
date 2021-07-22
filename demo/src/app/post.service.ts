@@ -14,4 +14,7 @@ export class PostService {
   addNewPost(id:number,post:Post):Observable<any>{
       return this.httpClient.post('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user/'+id+'/post',post)
   }
+  getPost(id:number):Observable<any>{
+      return this.httpClient.get('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user/'+id+'/post')
+  }
 }

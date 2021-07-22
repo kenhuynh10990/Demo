@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header>
+        <div mat-card-title >
+        </div>
+        <mat-card-title>{{currentUser.userName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{post.content}}
+        </p>
+    </mat-card-content>
+   <div class="portrait">
+    <img *ngIf="post.image" mat-card-image [src]="post.image">
+   </div>
+   
+   
+    
+</mat-card>
