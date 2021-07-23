@@ -17,6 +17,8 @@ import { RegisterComponent } from './register/register.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post-list/post-detail/post-detail.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { CommentComponent } from './comment/comment.component';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { PostListComponent } from './post-list/post-list.component';
     RegisterComponent,
     PostComponent,
     PostDetailComponent,
-    PostListComponent
+    PostListComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { PostListComponent } from './post-list/post-list.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

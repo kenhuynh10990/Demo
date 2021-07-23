@@ -18,22 +18,29 @@ export class HomeComponent implements OnInit {
     postList: Post[] = [];
     postListIsFetching = true;
     commentForm: FormGroup;
-    user:User;
+    user: User;
     post: Post;
-    
+    commentList: Comment;
 
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router,
         private postService: PostService,
-        private formBuilder:FormBuilder,
-        private commentService:CommentService
+        private formBuilder: FormBuilder,
+        private commentService: CommentService
     ) {
         this.authenticationService.currentUser.subscribe(
             (x) => (this.currentUser = x)
         );
     }
-
+   getComment(post:Post){
+    this.commentService
+    .getComment(this.currentUser.userId, post.id)
+    .subscribe((data) => {
+        this.commentList = data;
+      
+    });
+   }
     ngOnInit(): void {
         setTimeout(() => {
             this.postService
@@ -46,8 +53,8 @@ export class HomeComponent implements OnInit {
 
         this.commentForm = this.formBuilder.group({
             content: [""],
-            
         });
+        
     }
     get isLogged() {
         return this.currentUser;
@@ -57,9 +64,9 @@ export class HomeComponent implements OnInit {
         this.router.navigate(["/login"]);
     }
 
-    submitCommentForm(post: Post) {
-        console.log(post.id)
-        
+    submitCommentForm(post:Post) {
+       
+
         this.commentForm.controls.content.setValue(
             this.commentForm.get("content").value.trim()
         );
@@ -71,9 +78,10 @@ export class HomeComponent implements OnInit {
             )
             .subscribe(() => {
                 const comment = {
-                    ...this.commentForm.value
+                    ...this.commentForm.value,
                 };
                 this.commentForm.reset();
             });
+            
     }
 }

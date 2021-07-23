@@ -16,7 +16,7 @@
 <app-post></app-post>
 
 
-<div *ngFor="let post of postList">
+<div *ngFor="let post of postList, let i =index">
     <mat-card>
         <mat-card-header>
             <div mat-card-title >
@@ -31,16 +31,21 @@
        <div class="portrait">
         <img *ngIf="post.image" mat-card-image [src]="post.image">
        </div>
-
-       <form
-       [formGroup]="commentForm"
-       (ngSubmit)="submitCommentForm(post)"
-       >
-       <input type="text" placeholder="Post your comment" formControlName="content"/>
+       <mat-card>
+           
+            <form
+            [formGroup]="commentForm"
+            (ngSubmit)="submitCommentForm(post)"
+            >
+            <mat-form-field appearance="fill" class="full-width-input">
+                <input matInput placeholder="Comment" formControlName="content" />
+              </mat-form-field>
+            
+            </form>
+           
+       </mat-card>
        
-       </form>
-       
-        
+       <app-comment [comment]="commentList" [post]="post"></app-comment>
     </mat-card>
 </div>
 <!-- <app-post-list *ngIf="!postListIsFetching" [postList]="postList"></app-post-list> -->

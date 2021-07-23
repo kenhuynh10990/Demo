@@ -1,0 +1,7 @@
+  <mat-card *ngFor="let comment of comment" >
+        <mat-card-content>
+            <div  style="color: blue;">{{currentUser.userName}}:</div>
+            
+            <p>{{comment.content}}</p>
+        </mat-card-content>
+    </mat-card>
