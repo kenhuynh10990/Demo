@@ -41,6 +41,8 @@ export class HomeComponent implements OnInit {
       
     });
    }
+
+
     ngOnInit(): void {
         setTimeout(() => {
             this.postService
@@ -82,6 +84,6 @@ export class HomeComponent implements OnInit {
                 };
                 this.commentForm.reset();
             });
-            
+            this.ngOnInit();
     }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DomSanitizer, SafeStyle } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "../authentication.service";
+import { Post } from "../model/post.model";
 import { User } from "../model/user.model";
 import { PostService } from "../post.service";
 
@@ -21,6 +22,8 @@ export class PostComponent implements OnInit {
     imageUrlFromLocal: string;
     imageFile: File;
     imageSrc: string;
+
+    
     constructor(
         private formBuilder: FormBuilder,
         private postService: PostService,
@@ -41,6 +44,7 @@ export class PostComponent implements OnInit {
         });
         
     }
+ 
 
     public getSantizeUrl(url: string) {
         return this.sanitization.bypassSecurityTrustUrl(url);
@@ -96,9 +100,11 @@ export class PostComponent implements OnInit {
                             ...this.currentUser,
                         },
                     };
+                   
                     this.isSubmiting = false;
                     this.clearForm();
                 });
         }
+        
     }
 }

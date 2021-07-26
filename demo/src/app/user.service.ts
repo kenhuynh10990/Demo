@@ -13,7 +13,7 @@ export class UserService {
 public getAllUser():Observable<any>{
     return this.httpClient.get('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user');
 }
-  public register(user:User){
+  public  register(user:User){
       
       return this.httpClient.post('https://60ee6509eb4c0a0017bf43f1.mockapi.io/api/user',user);
   }
